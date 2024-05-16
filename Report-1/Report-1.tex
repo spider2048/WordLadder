@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{lipsum}
+
+\geometry{
+    a4paper,
+    left=1in,
+    right=1in,
+    top=1in,
+    bottom=1in
+}
+
+\titleformat{\section}
+{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+
+\title{
+    \textbf{Word Ladder Problem}
+}
+\author{
+    Suhas Nandibhatla (EC21B1113), Reddappa Reddy R (EC21B1114)
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem explanation}
+
+Word ladder problem is a word game (also called word golf, ladder grams, etc.) invented by Lewis Carroll, who is an English author, poet, mathematician and photographer. This puzzle begins with two words having the same length, with the goal being to find a chain of other words to link the two given words, in which two adjacent words differ by exactly one letter. In our project, we will explore different methods and propose heuristics to solve the problem in \textbf{minimum} number of transformations.
+
+\paragraph*{Example:} Consider two words: `FOOL' and `CAGE'. The following chain is used to transform `FOOL' into `SAGE':
+
+\begin{enumerate}
+    \item FOOL
+    \item POOL
+    \item POLL
+    \item POLE
+    \item PALE
+    \item SALE
+    \item SAGE
+    \item CAGE
+\end{enumerate}
+
+In the above chain, we have 6 words connecting the start and the end word, and is believed to be the shortest path between the given words.
+
+\section*{Solution}
+
+This problem is usually solved using graph algorithms like breadth-first search or depth-first search to explore all possible transformations from start word till end word. Each node in the graph would contain a word in the chain, and the path from the start node to the end node would be the final chain.
+We can then use Depth-First Search (DFS) or Breadth-First Search (BFS) to solve the problem. But DFS and BFS come with their own disadvantages:
+
+\begin{enumerate}
+    \item \textbf{Completeness}: DFS might not find the shortest path from start word to end word. Because of the nature of the algorithm, it might find a solution which could be much larger than the optimal solution.
+    \item \textbf{Memory Usage}: Longer chains with DFS can require significant amount of memory, and may not be feasible in cases.
+    \item \textbf{Time Complexity}: BFS may find a shorter chain than DFS, but it may take longer to execute than DFS.  
+\end{enumerate}
+
+\paragraph*{Artificial Intelligence} Use of Artificial Intelligence techniques helps the search process by determining the optimal part of the chain using a heuristic function. Algorithms like A-star employ a heuristic function, which optimizes the next word in the chain by using a similarity score between the goal word and find a nearest word in the dictionary. The similarity score could be the score obtained from fuzzy search algorithms like Levenshtein distance. Other AI algorithms could include Bidirectional Breadth-First Search (Bi-BFS), where the search needs to be performed from two different start points simultaneously. Bi-BFS is generally used to find the shortest path between two points in an undirected graph. A-star and Bi-BFS guarantee the optimality of the solution, because of the importance given to the heuristic function. We can implement datastructures like the `fuzzy set', to compute the heuristic function.
+
+\end{document}
